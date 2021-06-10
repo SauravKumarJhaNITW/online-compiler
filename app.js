@@ -21,7 +21,11 @@ app.post("/compilecode", function (req, res) {
   var lang = req.body.lang;
   if (lang === "C" || lang === "C++") {
     if (inputRadio === "true") {
-      var envData = { OS: "linux", cmd: "gcc", options: { timeout: 10000 } };
+      var envData = {
+        OS: "linux",
+        cmd: "/usr/bin/gcc",
+        options: { timeout: 10000 },
+      };
       compiler.compileCPPWithInput(envData, code, input, function (data) {
         if (data.error) {
           res.send(data.error);
@@ -30,7 +34,11 @@ app.post("/compilecode", function (req, res) {
         }
       });
     } else {
-      var envData = { OS: "linux", cmd: "gcc", options: { timeout: 10000 } };
+      var envData = {
+        OS: "linux",
+        cmd: "/usr/bin/gcc",
+        options: { timeout: 10000 },
+      };
       compiler.compileCPP(envData, code, function (data) {
         if (data.error) {
           res.send(data.error);
